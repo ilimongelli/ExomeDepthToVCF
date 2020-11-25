@@ -1,0 +1,2 @@
+start.p	end.p	type	nexons	start	end	chromosome	id	BF	reads.expected	reads.observed	reads.ratio
+1300	1305	deletion	6	41234421	41251897	17	chr17:41234421-41251897	24.1	14534	9644	0.664

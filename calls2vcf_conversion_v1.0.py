@@ -49,11 +49,18 @@ def manage_bed_calls(bed,exome_depth):
         readratios=[]
         dp=[]
         for line in infile:
-            row=line.rstrip().split(",")
             if count==0:
+                if(len(line.rstrip().split(",")))>1:
+                    sep=","
+                elif(len(line.rstrip().split("\t")))>1:
+                    sep="\t"
+                else:
+                    sep=","
+                    
                 count+=1
                 pass
             else:
+                row=line.rstrip().split(sep)
                 row[4]=int(row[4])-1
                 if row[4]==prev_start and row[6]==prev_chr:
                     row[4]=dict_bed[row[6]][prev_stop]
@@ -73,7 +80,7 @@ def manage_bed_calls(bed,exome_depth):
                     prev_normal_RC=int(row[9])
                     prev_cnv_RC=int(row[10])
                     prev_target_stop=int(row[1])
-                chromosomes.append(row[6])
+                chromosomes.append(str(row[6]))
                 starts.append(int(row[4]))
                 ends.append(int(row[5]))
                 if(row[2]=="deletion"):
